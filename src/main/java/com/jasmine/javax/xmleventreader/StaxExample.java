@@ -23,14 +23,14 @@ import javax.xml.stream.events.XMLEvent;
 
 import org.apache.commons.lang.StringUtils;
 
-public class Example {
+public class StaxExample {
 
 	private static final String THIS_IS_DOCUMENTATION_ADDED_BY_CODE = "This is documentation added by code.";
 	private static XMLEventFactory xmlEventFactory=XMLEventFactory.newInstance();
 	private static DTD newLine = xmlEventFactory.createDTD("\n");
 	private static DTD tab = xmlEventFactory.createDTD("\t");
 	
-	private static QName qNameArea = new QName("http://www.example.org/GolfCountryClub", "Area");
+	
 	private static QName qNameDocumentation = new QName("http://www.example.org/GolfCountryClub", "Documentation");
 	private static String pathname1 = "../XMLExamples/GolfCountryClub/GolfCountryClub.xml";
 	private static String pathname2 = "../XMLExamples/GolfCountryClub/GolfCountryClub1.xml";

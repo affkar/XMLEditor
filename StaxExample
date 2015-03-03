@@ -87,8 +87,6 @@ public class Example {
 			}
 		}
 		xmlEventWriter.close();
-		
-		System.out.println("========================================");
 	}
 
 	private static void updateExistingDocumentation(XMLEventWriter xmlEventWriter, XMLEventReader xmlEventReader, String additionalData) throws XMLStreamException {

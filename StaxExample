@@ -58,13 +58,6 @@ public class Example {
 	public static void main(String[] args) throws XMLStreamException, FactoryConfigurationError, IOException {
 		
 		
-		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(reader1);
-		while(xmlStreamReader.hasNext()) {
-			System.out.println(xmlStreamReader.next());
-		}
-		System.out.println("========================================");
-		
-		
 		XMLEventReader xmlEventReader = XMLInputFactory.newInstance().createXMLEventReader(reader2);
 		XMLEventWriter xmlEventWriter =  XMLOutputFactory.newInstance().createXMLEventWriter(writer);
 		while(xmlEventReader.hasNext()) {

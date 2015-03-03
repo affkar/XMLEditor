@@ -1,4 +1,5 @@
 package com.jasmine.javax.xmleventreader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,7 +17,6 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.DTD;
 import javax.xml.stream.events.XMLEvent;
@@ -36,14 +36,13 @@ public class Example {
 	private static String pathname2 = "../XMLExamples/GolfCountryClub/GolfCountryClub1.xml";
 	private static File file1 = new File(pathname1);
 	private static File file2 = new File(pathname2);
-	private static Reader reader1;
-	private static Reader reader2;
+	
+	private static Reader reader;
 	private static Writer writer;
 	
 	static {
 		try {
-			reader1=new FileReader(file1);
-			reader2=new FileReader(file1);
+			reader=new FileReader(file1);
 			writer=new FileWriter(file2);
 		} catch (FileNotFoundException e) {
 			System.out.println("Fatal- file doesn't exist "+e.toString());
@@ -56,25 +55,9 @@ public class Example {
 	}
 	
 	public static void main(String[] args) throws XMLStreamException, FactoryConfigurationError, IOException {
-		
-		
-		XMLEventReader xmlEventReader = XMLInputFactory.newInstance().createXMLEventReader(reader2);
+		XMLEventReader xmlEventReader = XMLInputFactory.newInstance().createXMLEventReader(reader);
 		XMLEventWriter xmlEventWriter =  XMLOutputFactory.newInstance().createXMLEventWriter(writer);
-		while(xmlEventReader.hasNext()) {
-			
-			//try{
-			if(xmlEventReader.peek().getEventType()==XMLStreamConstants.END_ELEMENT && xmlEventReader.peek().asEndElement().getName().equals(new QName("", "GolfCourse"))){
-				//xmlEventWriter.add(newLine);
-				xmlEventWriter.add(tab);
-				xmlEventWriter.add(xmlEventFactory.createStartElement(qNameArea, null, null));
-				xmlEventWriter.add(xmlEventFactory.createCharacters("10 Hectares"));
-				xmlEventWriter.add(xmlEventFactory.createEndElement(qNameArea, null));
-				xmlEventWriter.add(newLine);
-			}
-			
-			/*}catch(NullPointerException npe){
-				System.out.println(xmlEventReader.peek().getSchemaType());
-			}*/
+		while(xmlEventReader.hasNext()) {			
 			XMLEvent next = (XMLEvent)xmlEventReader.next();
 			xmlEventWriter.add(next);
 			if(next.getEventType()==XMLStreamConstants.START_ELEMENT && next.asStartElement().getName().equals(new QName("", "GolfCourse"))){

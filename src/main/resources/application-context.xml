@@ -48,12 +48,51 @@
     <bean id="XMLEventsToByteArray" class="com.jasmine.javax.xmleventreader.XMLEventsToByteArray"/>
     
     <bean id="XMLTransformationRouteBuilder" class="com.jasmine.javax.xmleventreader.XMLTransformationRouteBuilder">
-    	<property name="inputdir" value="${inputdir}"/>
-    	<property name="outputdir" value="${outputdir}"/>
+    	<property name="inputdir1" value="${inputdir1}"/>
+    	<property name="inputdir2" value="${inputdir2}"/>
+    	<property name="inputdir3" value="${inputdir3}"/>
+    	<property name="inputdir4" value="${inputdir4}"/>
+    	<property name="inputdir5" value="${inputdir5}"/>
+    	<property name="inputdir6" value="${inputdir6}"/>
     	<property name="inputfileregex" value="${inputfileregex}"></property>
     </bean>
     
-    <bean id="XMLEventsProcessor" class="com.jasmine.javax.xmleventreader.XMLEventProcessor"/>
+    <bean id="XMLEventsProcessor1" class="com.jasmine.javax.xmleventreader.XMLEventProcessor">
+    	<property name="codePath1" value="${codePath1}"/>
+    	<property name="codePath2" value="${codePath2}"/>
+    	<property name="codePath3" value="${codePath3}"/>
+    	<property name="codePath4" value="${codePath4}"/>
+    </bean>
+    <bean id="XMLEventsProcessor2" class="com.jasmine.javax.xmleventreader.XMLEventProcessor">
+    	<property name="codePath1" value="${codePath1}"/>
+    	<property name="codePath2" value="${codePath2}"/>
+    	<property name="codePath3" value="${codePath3}"/>
+    	<property name="codePath4" value="${codePath4}"/>
+    </bean>
+    <bean id="XMLEventsProcessor3" class="com.jasmine.javax.xmleventreader.XMLEventProcessor">
+    	<property name="codePath1" value="${codePath1}"/>
+    	<property name="codePath2" value="${codePath2}"/>
+    	<property name="codePath3" value="${codePath3}"/>
+    	<property name="codePath4" value="${codePath4}"/>
+    </bean>
+    <bean id="XMLEventsProcessor4" class="com.jasmine.javax.xmleventreader.XMLEventProcessor">
+    	<property name="codePath1" value="${codePath1}"/>
+    	<property name="codePath2" value="${codePath2}"/>
+    	<property name="codePath3" value="${codePath3}"/>
+    	<property name="codePath4" value="${codePath4}"/>
+    </bean>
+    <bean id="XMLEventsProcessor5" class="com.jasmine.javax.xmleventreader.XMLEventProcessor">
+    	<property name="codePath1" value="${codePath1}"/>
+    	<property name="codePath2" value="${codePath2}"/>
+    	<property name="codePath3" value="${codePath3}"/>
+    	<property name="codePath4" value="${codePath4}"/>
+    </bean>
+    <bean id="XMLEventsProcessor6" class="com.jasmine.javax.xmleventreader.XMLEventProcessor">
+    	<property name="codePath1" value="${codePath1}"/>
+    	<property name="codePath2" value="${codePath2}"/>
+    	<property name="codePath3" value="${codePath3}"/>
+    	<property name="codePath4" value="${codePath4}"/>
+    </bean>
     	
     
     <camel:camelContext>

@@ -20,7 +20,7 @@ public class InputStreamToXMLEvents implements ApplicationContextAware{
 	
 	public Queue<XMLEvent> getAllXMLEvents(InputStream is) throws XMLStreamException{
 		XMLEventReader xmlEventReader=
-		context.getBean(XMLEventReader.class, is);
+		(XMLEventReader) context.getBean("xmlEventReader", is);
 		
 		
 		Queue<XMLEvent> eventQueue=new LinkedList<XMLEvent>();

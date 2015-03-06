@@ -47,37 +47,26 @@ public class XMLEventProcessor implements Processor,ApplicationContextAware {
 			if (currentElement.getEventType() == XMLStreamConstants.START_ELEMENT
 					&& currentElement.asStartElement().getName()
 							.equals(new QName("http://schemas.xmlsoap.org/wsdl/", "operation"))) {
-				if (nextEvent.getEventType() == XMLStreamConstants.CHARACTERS
-						&& (StringUtils.isEmpty(nextEvent.toString()) || StringUtils
-								.isBlank(nextEvent.toString()))) {
-					xmlEventsToReturn.add(nextEvent);
-					fastForward(xmlEvents);
-				}
+				addCharacterEventsAndFastForward(xmlEvents, xmlEventsToReturn);
 				if (nextEvent.getEventType() == XMLStreamConstants.START_ELEMENT
 						&& nextEvent.asStartElement().getName()
 								.equals(new QName("http://schemas.xmlsoap.org/wsdl/","documentation"))) {
 						xmlEventsToReturn.add(nextEvent);
 						fastForward(xmlEvents);
-						if (nextEvent.getEventType() == XMLStreamConstants.CHARACTERS) {
-							
-							xmlEventsToReturn.add(nextEvent);
-							fastForward(xmlEvents);
-							xmlEventsToReturn.add(newLine);
-							Characters characters = xmlEventFactory
-									.createCharacters(THIS_IS_DOCUMENTATION_ADDED_BY_CODE);
-							xmlEventsToReturn.add(characters);
-						}
+						addCharacterEventsAndFastForward(xmlEvents, xmlEventsToReturn);
+						Characters characters = xmlEventFactory
+								.createCharacters(THIS_IS_DOCUMENTATION_ADDED_BY_CODE);
+						xmlEventsToReturn.add(characters);
 						if (nextEvent.getEventType() == XMLStreamConstants.END_ELEMENT) {
 							xmlEventsToReturn.add(nextEvent);
 							fastForward(xmlEvents);
 						}
 				} else {
 					xmlEventsToReturn.add(xmlEventFactory.createStartElement(
-							qNameDocumentation, null, null));
+							"wsdl", qNameDocumentation.getNamespaceURI(), qNameDocumentation.getLocalPart()));
 					xmlEventsToReturn.add(xmlEventFactory
 							.createCharacters(THIS_IS_DOCUMENTATION_ADDED_BY_CODE));
-					xmlEventsToReturn.add(xmlEventFactory.createEndElement(qNameDocumentation,
-							null));
+					xmlEventsToReturn.add(xmlEventFactory.createEndElement("wsdl", qNameDocumentation.getNamespaceURI(), qNameDocumentation.getLocalPart()));
 					xmlEventsToReturn.add(newLine);
 					xmlEventsToReturn.add(tab);
 				}
@@ -85,6 +74,14 @@ public class XMLEventProcessor implements Processor,ApplicationContextAware {
 
 		}
 		return xmlEventsToReturn;
+	}
+
+	private void addCharacterEventsAndFastForward(Queue<XMLEvent> xmlEvents,
+			Collection<XMLEvent> xmlEventsToReturn) {
+		while (nextEvent.getEventType() == XMLStreamConstants.CHARACTERS) {
+			xmlEventsToReturn.add(nextEvent);
+			fastForward(xmlEvents);
+		}
 	}
 
 	private void fastForward(Queue<XMLEvent> xmlEvents) {

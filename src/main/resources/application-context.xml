@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   					   http://camel.apache.org/schema/spring
+						   http://camel.apache.org/schema/spring/camel-spring.xsd
+						   http://www.springframework.org/schema/context
+      					   http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<context:property-placeholder location="classpath:XMLEditor.properties"/>
+    
+    
+    <bean id="newLineDTD" class="javax.xml.stream.events.DTD" factory-bean="XMLEventFactory" factory-method="createDTD" >
+    	<constructor-arg value="&#10;"/>
+    </bean>
+    <bean id="tabDTD" class="javax.xml.stream.events.DTD" factory-bean="XMLEventFactory" factory-method="createDTD">
+    	<constructor-arg value="&#9;"/>
+    </bean>
+<!--     <bean id="file1" class="java.io.File">
+    	<constructor-arg value="${inputfile}"/>
+    </bean>
+    <bean id="fileReader" class="java.io.FileReader">
+    	<constructor-arg ref="file1"/>
+    </bean>
+    
+    <bean id="file2" class="java.io.File">
+    	<constructor-arg value="${outputfile}"/>
+    </bean>
+    <bean id="fileWriter" class="java.io.FileWriter">
+    	<constructor-arg ref="file2"/>
+    </bean>
+       javax.xml.namespace.QName
+ -->    
+    
+
+	<bean id="xmlInputFactory" class="javax.xml.stream.XMLInputFactory" factory-method="newInstance"/>
+    <bean id="xmlEventReader" factory-bean="xmlInputFactory" factory-method="createXMLEventReader" scope="prototype"/>
+	
+	<bean id="xmlOutputFactory" class="javax.xml.stream.XMLOutputFactory" factory-method="newInstance"/>	
+    <bean id="XMLEventFactory" class="javax.xml.stream.XMLEventFactory" factory-method="newInstance"/>
+    <bean id="xmlEventWriter" factory-bean="xmlOutputFactory" factory-method="createXMLEventWriter" scope="prototype"/>
+    
+    <bean id="InputStreamToXMLEvents" class="com.jasmine.javax.xmleventreader.InputStreamToXMLEvents"/>
+    <bean id="XMLEventsToByteArray" class="com.jasmine.javax.xmleventreader.XMLEventsToByteArray"/>
+    
+    <bean id="XMLTransformationRouteBuilder" class="com.jasmine.javax.xmleventreader.XMLTransformationRouteBuilder">
+    	<property name="inputdir" value="${inputdir}"/>
+    	<property name="outputdir" value="${outputdir}"/>
+    	<property name="inputfileregex" value="${inputfileregex}"></property>
+    </bean>
+    
+    <bean id="XMLEventsProcessor" class="com.jasmine.javax.xmleventreader.XMLEventProcessor"/>
+    	
+    
+    <camel:camelContext>
+    	<camel:routeBuilder ref="XMLTransformationRouteBuilder"/>
+    </camel:camelContext>
+    
+</beans>

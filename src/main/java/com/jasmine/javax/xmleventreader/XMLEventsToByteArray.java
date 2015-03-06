@@ -21,7 +21,7 @@ public class XMLEventsToByteArray implements ApplicationContextAware{
 	}	
 	public byte[] convert(List<XMLEvent> xmlEvents) throws XMLStreamException{
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		XMLEventWriter xmlEventWriter=context.getBean(XMLEventWriter.class, outputStream);
+		XMLEventWriter xmlEventWriter=(XMLEventWriter) context.getBean("xmlEventWriter", outputStream);
 		for(XMLEvent xmlEvent: xmlEvents)
 			xmlEventWriter.add(xmlEvent);
 		xmlEventWriter.close();

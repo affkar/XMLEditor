@@ -37,17 +37,15 @@ import static org.grep4j.core.options.Option.recursive;
 import static org.grep4j.core.options.Option.filesMatching;
 import static org.grep4j.core.options.Option.lineNumber;
 
-public class XMLEventProcessor implements Processor,ApplicationContextAware {
+public class XMLEventConverter implements ApplicationContextAware {
 
 	private ApplicationContext context;
 	
-	private static final String THIS_IS_DOCUMENTATION_ADDED_BY_CODE = "This is documentation added by code.";
-
 	private QName qNameDocumentation = new QName(
 			"http://schemas.xmlsoap.org/wsdl/", "documentation");
 	
 	private XMLEvent previousEvent;
-	private XMLEvent currentElement;
+	private XMLEvent currentEvent;
 	private XMLEvent nextEvent;
 	private String codePath1;
 	private String codePath2;
@@ -62,16 +60,16 @@ public class XMLEventProcessor implements Processor,ApplicationContextAware {
 		DTD tab=context.getBean("tabDTD",DTD.class);
 		
 		while(!xmlEvents.isEmpty()){
-			currentElement = xmlEvents.poll();
+			currentEvent = xmlEvents.poll();
 			nextEvent=null;
 			if(!xmlEvents.isEmpty())
 				nextEvent = xmlEvents.peek();
 			
-			xmlEventsToReturn.add(currentElement);
-			if (currentElement.getEventType() == XMLStreamConstants.START_ELEMENT
-					&& currentElement.asStartElement().getName()
+			xmlEventsToReturn.add(currentEvent);
+			if (currentEvent.getEventType() == XMLStreamConstants.START_ELEMENT
+					&& currentEvent.asStartElement().getName()
 							.equals(new QName("http://schemas.xmlsoap.org/wsdl/", "operation"))) {
-				String operationName = currentElement.asStartElement().getAttributeByName(new QName("name")).getValue();
+				String operationName = currentEvent.asStartElement().getAttributeByName(new QName("name")).getValue();
 				addCharacterEventsAndFastForward(xmlEvents, xmlEventsToReturn);
 				if (nextEvent.getEventType() == XMLStreamConstants.START_ELEMENT
 						&& nextEvent.asStartElement().getName()
@@ -100,6 +98,10 @@ public class XMLEventProcessor implements Processor,ApplicationContextAware {
 		}
 		return xmlEventsToReturn;
 	}
+	
+	/*private String getCompositionFromOperationName(String operationName){
+		
+	}*/
 
 	private String getCharactersFromGrepOutput(String operationName) {
 		Profile customerDir = ProfileBuilder.newBuilder()
@@ -150,8 +152,8 @@ public class XMLEventProcessor implements Processor,ApplicationContextAware {
 
 	private void fastForward(Queue<XMLEvent> xmlEvents) {
 		//Done because we have added the nextEvent to our Processed list
-		previousEvent=currentElement;
-		currentElement=xmlEvents.poll();
+		previousEvent=currentEvent;
+		currentEvent=xmlEvents.poll();
 		nextEvent=xmlEvents.peek();
 	}
 

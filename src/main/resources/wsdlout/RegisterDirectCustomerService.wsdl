@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/RegisterDirectCustomerService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/RegisterDirectCustomerService/" name="RegisterDirectCustomerService">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/RegisterDirectCustomerService/">
+      <xsd:element name="NewOperation2">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewOperation2Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewOperation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewOperationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="NewOperation2Request">
+    <wsdl:part element="tns:NewOperation2" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NewOperation2Response">
+    <wsdl:part element="tns:NewOperation2Response" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NewOperationRequest">
+    <wsdl:part element="tns:NewOperation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NewOperationResponse">
+    <wsdl:part element="tns:NewOperationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RegisterDirectCustomerService">
+    <wsdl:operation name="NewOperation">
+      <wsdl:documentation>Some Documentation added by a ProgramerDocumentation added by code</wsdl:documentation>
+      <wsdl:input message="tns:NewOperationRequest"></wsdl:input>
+      <wsdl:output message="tns:NewOperationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewOperation2">
+      <wsdl:documentation>Documentation added by code</wsdl:documentation>
+	<wsdl:input message="tns:NewOperation2Request"></wsdl:input>
+      <wsdl:output message="tns:NewOperation2Response"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RegisterDirectCustomerServiceSOAP" type="tns:RegisterDirectCustomerService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="NewOperation">
+      <wsdl:documentation>Documentation added by code</wsdl:documentation>
+	<soap:operation soapAction="http://www.example.org/RegisterDirectCustomerService/NewOperation"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewOperation2">
+      <wsdl:documentation>Documentation added by code</wsdl:documentation>
+	<soap:operation soapAction="http://www.example.org/RegisterDirectCustomerService/NewOperation2"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RegisterDirectCustomerServiceKarthick">
+    <wsdl:port name="RegisterDirectCustomerServiceSOAP" binding="tns:RegisterDirectCustomerServiceSOAP">
+      <soap:address location="http://www.example.org/"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

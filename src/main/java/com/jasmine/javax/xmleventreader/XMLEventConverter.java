@@ -104,7 +104,7 @@ public class XMLEventConverter implements ApplicationContextAware {
 	}*/
 
 	private String getCharactersFromGrepOutput(String operationName) {
-		Profile customerDir = ProfileBuilder.newBuilder()
+		/*Profile customerDir = ProfileBuilder.newBuilder()
                 .name(codePath1)
                 .filePath(codePath1)
                 .onLocalhost()
@@ -139,7 +139,8 @@ public class XMLEventConverter implements ApplicationContextAware {
                                 )
                         )
                 );
-		return results.toString();
+		return results.toString();*/
+		return "Documentation added by code";
 	}
 
 	private void addCharacterEventsAndFastForward(Queue<XMLEvent> xmlEvents,

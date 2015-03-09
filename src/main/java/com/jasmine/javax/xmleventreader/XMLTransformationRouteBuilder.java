@@ -1,14 +1,6 @@
 package com.jasmine.javax.xmleventreader;
 
-import static org.apache.camel.builder.PredicateBuilder.not;
-
-import java.util.Collection;
-
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.freemarker.FreemarkerConstants;
-import org.apache.camel.model.ProcessorDefinition;
-import org.apache.camel.spi.InterceptStrategy;
 
 public class XMLTransformationRouteBuilder extends RouteBuilder {
 

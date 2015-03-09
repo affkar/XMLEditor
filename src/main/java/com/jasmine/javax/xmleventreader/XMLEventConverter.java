@@ -12,30 +12,9 @@ import javax.xml.stream.events.DTD;
 import javax.xml.stream.events.XMLEvent;
 
 import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
-import org.apache.commons.lang.StringUtils;
-import org.grep4j.core.model.Profile;
-import org.grep4j.core.model.ProfileBuilder;
-import org.grep4j.core.result.GrepResults;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-
-import static org.grep4j.core.Grep4j.grep;
-import static org.grep4j.core.Grep4j.constantExpression;
-import static org.grep4j.core.fluent.Dictionary.on;
-import static org.grep4j.core.fluent.Dictionary.options;
-import static org.grep4j.core.fluent.Dictionary.option;
-import static org.grep4j.core.fluent.Dictionary.with;
-import static org.grep4j.core.options.Option.ignoreCase;
-import static org.grep4j.core.options.Option.extraLinesAfter;
-import static org.grep4j.core.options.Option.onlyMatching;
-import static org.grep4j.core.options.Option.excludeDirectoriesWhenRecursing;
-import static org.grep4j.core.options.Option.excludeFilesWhenRecursing;
-import static org.grep4j.core.options.Option.onlyFilesWhenRecursing;
-import static org.grep4j.core.options.Option.recursive;
-import static org.grep4j.core.options.Option.filesMatching;
-import static org.grep4j.core.options.Option.lineNumber;
 
 public class XMLEventConverter implements ApplicationContextAware {
 

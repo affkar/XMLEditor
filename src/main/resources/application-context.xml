@@ -30,13 +30,7 @@
     <bean id="InputStreamToXMLEvents" class="com.jasmine.javax.xmleventreader.InputStreamToXMLEvents"/>
     <bean id="XMLEventsToByteArray" class="com.jasmine.javax.xmleventreader.XMLEventsToByteArray"/>
     
-    <bean id="XMLTransformationRouteBuilder" class="com.jasmine.javax.xmleventreader.XMLTransformationRouteBuilder">
-    	<property name="inputdir1" value="${inputdir1}"/>
-    	<property name="inputdir2" value="${inputdir2}"/>
-    	<!-- <property name="inputdir3" value="${inputdir3}"/>
-    	<property name="inputdir4" value="${inputdir4}"/> -->
-    	<property name="inputfileregex" value="${inputfileregex}"/>
-    </bean>
+    <bean id="XMLTransformationRouteBuilder" class="com.jasmine.javax.xmleventreader.XMLTransformationRouteBuilder"/>
     
     <bean id="XMLEventConverter" class="com.jasmine.javax.xmleventreader.XMLEventConverter" scope="prototype">
     	<property name="codePath1" value="${codePath1}"/>
@@ -47,6 +41,10 @@
     
     <bean id="XMLEventsProcessor" class="com.jasmine.javax.xmleventreader.XMLEventsProcessor" />
     
+    <bean id="FileDirsInRouteConfigurer" class="com.jasmine.javax.xmleventreader.FileDirsInRouteConfigurer" init-method="init">
+    	<property name="inputdirs" value="${inputdirs}"/>
+    	<property name="inputfileregex" value="${inputfileregex}"/>
+    </bean>
     
     <camel:camelContext>
     	<camel:routeBuilder ref="XMLTransformationRouteBuilder"/>
